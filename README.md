@@ -1,10 +1,12 @@
 # LAMP
 Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker で構築します。
 
-## ディレクトリ構造
+## ディレクトリ構成
 ```
-.
 ├─ README.md
+├─ docker-compose.yml
+├─ .env.example
+├─ .env # コンテナのビルドに使用する環境変数を設定
 │
 ├── conf
 │    ├─ httpd.conf # Apache 設定ファイル
@@ -12,8 +14,6 @@ Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker で構築します。
 │    └─ php.ini # PHP 設定ファイル
 │
 ├── docker
-│    ├─ docker-compose.yml
-│    ├─ .env # コンテナのビルドに使用する環境変数を設定
 │    │
 │    ├── web
 │    │    └─ Dockerfile
@@ -32,7 +32,7 @@ $ git clone https://github.com/frozensox/LAMP.git
 2. `.git` ディレクトリを削除（Git はダウンロードのみの使用です）
 ```
 $ cd LAMP
-rm -rf .git
+$ rm -rf .git
 ```
 3. コンテナをビルド
 ```
@@ -59,9 +59,8 @@ $ docker compose down
 $ docker compose up -d --build
 ```
 
-
-## 設定ファイル
-`conf`ディレクトリ内の設定ファイルは、docker コンテナの各設定ファイルにマウントされています。設定の変更を反映するには`docker`ディレクトリへ移動後`docker-compose restart`としてコンテナを再起動してください。
+## 設定ファイルの変更
+`conf`ディレクトリ内の設定ファイルは、docker コンテナの各設定ファイルにマウントされています。設定の変更を反映するにはトップディレクトリ内で`docker-compose restart`としてコンテナを再起動してください。
 - conf/httpd.conf  => /etc/apache2/sites-available/000-default.conf
 - conf/mysql.cnf   => /etc/mysql/conf.d/my.cnf
 - conf/php.ini     => /usr/local/etc/php/conf.d/php.ini
