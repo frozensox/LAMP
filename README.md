@@ -4,6 +4,7 @@ Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker で構築します。
 ## ディレクトリ構成
 ```
 ├─ README.md
+├─ install.sh
 ├─ docker-compose.yml
 ├─ .env.example
 ├─ .env # コンテナのビルドに使用する環境変数を設定
@@ -24,7 +25,22 @@ Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker で構築します。
 └── laravel # Laravel プロジェクト作成先（.env で変更可）
 ```
 
-## 環境の再現手順
+## シェルスクリプトを使用した環境の再現
+1. GitHub からリポジトリをクローン
+```
+$ git clone https://github.com/frozensox/LAMP.git
+```
+2. `.git` ディレクトリを削除（Git はダウンロードのみの使用です）
+```
+$ cd LAMP
+$ rm -rf .git
+```
+3. シェルスクリプトの実行
+```
+$ sh install.sh
+```
+
+## 手動での環境の再現手順
 1. GitHub からリポジトリをクローン
 ```
 $ git clone https://github.com/frozensox/LAMP.git
