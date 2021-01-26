@@ -1,7 +1,7 @@
 [mysqld]
 # character set / collation
 character_set_server = utf8mb4
-collation_server = utf8mb4_0900_ai_ci
+collation_server = utf8mb4_ja_0900_as_cs_ks
 
 # timezone
 default-time-zone = SYSTEM
