@@ -81,14 +81,6 @@ $ docker-compose up -d
 - conf/mysql.cnf   => /etc/mysql/conf.d/my.cnf
 - conf/php.ini     => /usr/local/etc/php/conf.d/php.ini
 
-## Apache の deny 設定
-Apache の設定ファイル `httpd.conf` でウェブサーバコンテナへのアクセスを制限できます。しかし、 `Require local` としてもなぜか効かず、ホスト側からのアクセスが `Forbidden` になってしまいます。 `Require ip 192.168` としてローカルIPのアクセスを許可することで接続を許可しています。必要に応じて変更してください。
-```
-Require all denied
-Require local
-Require ip 192.168
-```
-
 ## 参考記事
 - [【超入門】20分でLaravel開発環境を爆速構築するDockerハンズオン](https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4)
 - [Dockerを使ってLaravelのローカル開発環境を作る(Apache版)](https://qiita.com/ucan-lab/items/38cd04cee1f3f9e024b9)
