@@ -63,6 +63,11 @@ $ docker-compose exec web composer create-project --prefer-dist laravel/laravel 
 $ docker-compose exec web php artisan migrate
 ```
 ブラウザから `http://localhost/` にアクセスし Laravel の Welcome 画面が表示されることを確認してください。
+6. コンテナを再起動（`.htaccess` の mod_rewrite 有効化のため）
+```
+$ docker-compose restart
+```
+
 
 ## MySQL への接続
 コマンドラインからルート権限で接続するには以下のコマンドを実行してください。

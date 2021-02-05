@@ -19,7 +19,7 @@ services:
       DB_CONNECTION: mysql
       DB_HOST: db
       DB_PORT: 3306
-      DB_DATABASE: ${DB_NAME:-laravel_db}
+      DB_DATABASE: ${DB_NAME:-laravel}
       DB_USERNAME: ${DB_USERNAME:-username}
       DB_PASSWORD: ${DB_PASSWORD:-userpass}
     working_dir: /${PROJECT_DIR:-laravel}
@@ -37,7 +37,7 @@ services:
       - db-store:/var/lib/mysql
       - ./conf/mysql.cnf:/etc/mysql/conf.d/my.cnf
     environment:
-      MYSQL_DATABASE: ${DB_NAME:-laravel_db}
+      MYSQL_DATABASE: ${DB_NAME:-laravel}
       MYSQL_USER: ${DB_USERNAME:-username}
       MYSQL_PASSWORD: ${DB_PASSWORD:-userpass}
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass}
