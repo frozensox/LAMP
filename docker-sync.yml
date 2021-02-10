@@ -1,0 +1,15 @@
+version: '2'
+
+syncs:
+  laravel-sync:
+    src: ./${PROJECT_DIR}
+    sync_strategy: unison
+#    sync_strategy: rsync
+#    sync_host_port: 7999
+    sync_host_ip: 127.0.0.1
+    sync_excludes: ['.idea', '.gitignore', '.git/', 'vendor/', 'node_modules/', 'storage/']
+#    sync_userid: 1000
+    watch_args: -v
+    watch_strategy: fswatch
+    watch_excludes: ['.idea', '.gitignore', '.git/', 'vendor/', 'node_modules/', 'storage/']
+    notify_terminal: true

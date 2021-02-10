@@ -1,11 +1,12 @@
 # LAMP
-Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker で構築します。
+Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker + docker-sync で構築します。docker-syncを導入することでファイルの同期が速くなり、サーバーアクセスの遅延を減らすことができます。
 
 ## ディレクトリ構成
 ```
 ├─ .env # コンテナのビルドに使用する環境変数を設定
 ├─ .env.example
 ├─ docker-compose.yml
+├─ docker-sync.yml
 ├─ install.sh # 自動インストール用のシェルスクリプト
 ├─ README.md
 │
@@ -25,7 +26,13 @@ Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker で構築します。
 └── laravel # Laravel プロジェクト作成先（.env で変更可）
 ```
 
-## シェルスクリプトを使用した環境の再現
+## 動作環境
+- `git` インストール済みで `git` コマンドが使用可能
+- `docker` がインストール済みで `docker-compose` が使用可能
+- `docker-sync` がインストール済み
+`docker-sync` を使うとコンテナへのファイルの同期が速くなるため、ウェブサーバーへの通信も速くなります。
+
+## シェルスクリプトを使用した環境再現
 1. GitHub からリポジトリをクローン
 ```
 $ git clone https://github.com/frozensox/LAMP.git
@@ -39,8 +46,16 @@ $ rm -rf .git
 ```
 $ sh install.sh
 ```
+4. コンテナを再起動（`.htaccess` の mod_rewrite 有効化のため）
+```
+$ docker-compose restart
+```
+5. docker-syncの起動
+```
+$ docker-sync start
+```
 
-## 手動での環境の再現手順
+## 手動での環境再現
 1. GitHub からリポジトリをクローン
 ```
 $ git clone https://github.com/frozensox/LAMP.git
@@ -50,22 +65,30 @@ $ git clone https://github.com/frozensox/LAMP.git
 $ cd LAMP
 $ rm -rf .git
 ```
-3. コンテナをビルド
+3. `.env` ファイルの作成
+```
+cp .env.example .env &&
+```
+4. コンテナをビルド
 ```
 $ docker-compose up -d --build
 ```
-4. Laravel をインストール
+5. Laravel をインストール
 ```
 $ docker-compose exec web composer create-project --prefer-dist laravel/laravel .
 ```
-5. マイグレーションの実行を確認
+6. マイグレーションの実行を確認
 ```
 $ docker-compose exec web php artisan migrate
 ```
 ブラウザから `http://localhost/` にアクセスし Laravel の Welcome 画面が表示されることを確認してください。
-6. コンテナを再起動（`.htaccess` の mod_rewrite 有効化のため）
+7. コンテナを再起動（`.htaccess` の mod_rewrite 有効化のため）
 ```
 $ docker-compose restart
+```
+8. docker-syncの起動
+```
+$ docker-sync start
 ```
 
 
