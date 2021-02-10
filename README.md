@@ -66,7 +66,7 @@ $ rm -rf .git
 ```
 3. `.env` ファイルの作成
 ```
-cp .env.example .env &&
+cp .env.example .env
 ```
 4. コンテナをビルド
 ```
