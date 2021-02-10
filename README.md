@@ -27,10 +27,9 @@ Laravel 用の LAMP(Apache+MySQL+PHP) 環境を Docker + docker-sync で構築�
 ```
 
 ## 動作環境
-- `git` インストール済みで `git` コマンドが使用可能
-- `docker` がインストール済みで `docker-compose` が使用可能
-- `docker-sync` がインストール済み
-`docker-sync` を使うとコンテナへのファイルの同期が速くなるため、ウェブサーバーへの通信も速くなります。
+- git がインストール済みで `git` コマンドが使用可能
+- docker がインストール済みで `docker-compose` コマンドが使用可能
+- docker-sync がインストール済み
 
 ## シェルスクリプトを使用した環境再現
 1. GitHub からリポジトリをクローン
@@ -82,6 +81,7 @@ $ docker-compose exec web composer create-project --prefer-dist laravel/laravel 
 $ docker-compose exec web php artisan migrate
 ```
 ブラウザから `http://localhost/` にアクセスし Laravel の Welcome 画面が表示されることを確認してください。
+
 7. コンテナを再起動（`.htaccess` の mod_rewrite 有効化のため）
 ```
 $ docker-compose restart
