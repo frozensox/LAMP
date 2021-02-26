@@ -20,10 +20,14 @@ COPY --from=node /usr/local/lib /usr/local/lib
 # yarn command
 # COPY --from=node /opt /opt
 
-# need for install Laravel
+# need for install Laravel6
 RUN apt-get update && \
   apt-get -y install git unzip libzip-dev libicu-dev libonig-dev && \
   apt-get clean && \
   rm -rf /var/lib/apt/lists/* && \
   docker-php-ext-install intl pdo_mysql zip bcmath && \
   a2enmod rewrite
+
+# Install xdebug
+RUN pecl install xdebug && \
+  docker-php-ext-enable xdebug
